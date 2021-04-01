@@ -1,132 +1,65 @@
+var board = {
+    cellLettersArray : [" ","A","B","C","D","E","F","G","H"," "],
+    cellNumbersArray : [" ","1","2","3","4","5","6","7","8"," "],
+    whitePieces:[" ","&#9814;","&#9815;","&#9816;","&#9812;","&#9813;","&#9816;","&#9815;","&#9814;"," ",],
+    whitePawns : "&#9817;",
+    blackPawns : "&#9823;",
+    blackPieces:[" ","&#9820;","&#9821;","&#9822;","&#9818;","&#9819;","&#9822;","&#9821;","&#9820;"," ",]
+}
 
-///////////1
-
-// var x=2,n=2;
-// while (x <= 100) {  
-//     var n=2;
-//     while (n <= x) {
-//         if (x % n == 0 ) {
-//             break;
-//         }
-//         n++;
-//     }
-//         if (x==n)  {
-//             document.write(x + "<br>");
-//         }
-//     x++;
-// }
-
-///////////2_3
-
-// var cart = [
-//     {
-//         title: "Товар 1",
-//         price: 200,
-//         count: 5,
-    
-//     },
-//     {
-//         title: "Товар 2",
-//         price: 250,
-//         count: 4,
-//     },
-//     {
-//         title: "Товар 3",
-//         price: 500,
-//         count: 3,
-//     },
-//     {
-//         title: "Товар 4",
-//         price: 1500,
-//         count: 1,
-//     }
-// ];
-
-// function countBasketPrice (arr){
-//     var endPrice = 0;
-//     for (var item of arr){
-//         endPrice = item.price * item.count + endPrice;
-//         document.write(item.title + " " + item.price + "$ " + item.count + "<br>");
-//     }
-//     document.write(endPrice)
-// }
-
-// countBasketPrice(cart)
+var chessBoard = document.createElement("table");
+var tr, td;
+document.querySelector("div").append(chessBoard);
+for(var i=0; i<10; i++){
+    tr = document.createElement("tr");
+    chessBoard.append(tr);
+        for(var j=0; j<10; j++){
+            td = document.createElement("td");            
+            filling(i,j);
+            tr.append(td);
+        }        
+}
 
 
-
-///////////4
-
-
-// for ( var i = 1; i < 10;document.write(i) , i++){};
-
-
-///////////5
-
-// var i, b = prompt("Введите количество строк");
-// var pyramid = [];
-// for ( i = 1; i <= b; i++){    
-//     pyramid.push("x");
-//     console.log(pyramid + "");
-// }
-
-
-
-
-/////////// 1
-
-
-
-
-
-
-
-var userInput = prompt("Ведите число от 0 до 999" ,0);
-var object = {};
-
-isANumber(userInput);
-
-
-
-function isANumber(number) {
-    if (isNaN((number))){
-        alert("Вы ввели не чило");
-        number = prompt("Ведите число от 0 до 999");
-        isANumber(number);
+function filling (row,column){
+    if ( row == 0 || row == 9){
+        td.innerHTML = board.cellLettersArray[j];
+    }    
+    if ( column == 0 || column == 9){
+        td.innerHTML = board.cellNumbersArray[i];
     }
-        else if (number < 0 ){
-            alert("Вы ввели число из неправильного диапазона");
-            number = prompt("Ведите число от 0 до 999");
-            isANumber(number);
+    if ( column == 9 || row == 0 ){
+        td.setAttribute("class", "rotateElement");
+    }    
+
+    // colores------------------
+
+    if ( column == 9 || column == 0 || row == 0 || row == 9  ){
+        td.classList.add("borderCell");
+    }
+    if ( column >=1 && column <=8 && row >= 1 && row <=8 ){
+
+        if ( column%2 == 0) {
+            (row %2==0) ? (td.setAttribute("class", "innerCellBlack")) : (td.setAttribute("class", "innerCellWhite"));
+            
         }
-            else if (number >= 1000){
-                console.log("Вы ввели число больше 999");
-            return object            
-            }
-    else {
-        document.write("Введенное число: " + number + "<br>");
-        numberDeconstruction(number)
-    }
-}    
-
-
-function numberDeconstruction(someNumber){    
-    switch (someNumber.length){
-        case 3:
-            object.u = someNumber[2];
-            object.d = someNumber[1];
-            object.h = someNumber[0];
-        break;    
-        case 2 : 
-            object.u = someNumber[1];
-            object.d = someNumber[0];
-            object.h = "-";
-        break;    
-        case 1 :   
-            object.u = someNumber[0];
-            object.d = "-";
-            object.h = "-";        
+            else {
+                (row %2==0) ? (td.setAttribute("class", "innerCellWhite")) : (td.setAttribute("class", "innerCellBlack"));
+        }
+        
+// figures------
+        if(row==2){
+            td.innerHTML = board.blackPawns;
+        }
+        if(row==1){
+            td.innerHTML = board.blackPieces[column];
+        }
+        if(row==7){
+            td.innerHTML = board.whitePawns;
+        }        
+        if(row==8){
+            td.innerHTML = board.whitePieces[column];
+        } 
     }
 }
 
-document.write("Сотни: " + object.h + "<br>" + "Десятки: " + object.d + "<br>" +  "Единицы: " + object.u)
