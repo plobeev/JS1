@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Gallery</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="smallSizePictures">
+            <img id="b1" src="small/s1.jpg" alt="404">
+            <img id="b2" src="small/s2.jpg" alt="404">
+            <img id="b3" src="small/s3.jpg" alt="404">
+        </div>
+        <div class="fullSizePictures"></div>
+        <button id="resetBtn" onclick="reset()" id="b5">Сброс</button>
+    </div>
+
+    <script>
+        var imgArray = document.querySelectorAll("img");
+        var img, src;
+        for (var i = 0; i < 3; i++) {
+            imgArray[i].onclick = function (e) {
+                img = document.createElement("img");
+                src = ("big/b" + (e.target.id.split("")[1]));
+                img.src = src + ".jpg";
+                img.setAttribute("class", "temp");
+                boxShadow(e);
+                $('.temp').remove();
+                img.setAttribute("onerror", "alert('изображение не найдено')");
+                document.querySelector(".fullSizePictures").append(img);
+                document.getElementById('resetBtn').style.display = "block"
+            }
+        }
+        document.getElementById('resetBtn').style.display = "none"
+
+        function reset() {
+            $('.temp').remove();
+            for (var r = 0; r < 3; r++) {
+                imgArray[r].classList.remove("shadow");
+            }
+            document.getElementById('resetBtn').style.display = "none"
+        }
+
+        function boxShadow(e) {
+            for (var j = 0; j < 3; j++) {
+                if (e.target.id.split("")[1] == j + 1) {
+                    imgArray[j].classList.add("shadow");
+                } else {
+                    imgArray[j].classList.remove("shadow");
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
