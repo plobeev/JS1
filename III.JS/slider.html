@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/b3c72de47b.js" crossorigin="anonymous"></script>
+    <title>Slider</title>
+</head>
+
+<div class="main">
+    <div class="imgBox1">
+        <img class="a1" src="small/s1.jpg" alt="404">
+        <img class="a1" src="small/s2.jpg" alt="404">
+        <img class="a1" src="small/s3.jpg" alt="404">
+        <img class="a1" src="small/s4.jpg" alt="404">
+        <img class="a1" src="small/s5.jpg" alt="404">
+
+    </div>
+    <div class="imgBox2">
+        <img class="a2" src="small/s1.jpg" alt="404">
+        <img class="a2" src="small/s2.jpg" alt="404">
+        <img class="a2" src="small/s3.jpg" alt="404">
+        <img class="a2" src="small/s4.jpg" alt="404">
+        <img class="a2" src="small/s5.jpg" alt="404">
+    </div>
+    <div class="btns">
+        <button onclick="prevImg()"><i class="fas fa-arrow-circle-left"></i></button>
+        <button onclick="nextImg()"><i class="fas fa-arrow-circle-right"></i></button>
+    </div>
+
+
+
+</div>
+
+
+<script>
+    var picsArrayA2 = document.querySelectorAll(".a2");
+    var picsArrayA1 = document.querySelectorAll(".a1");
+    var imgNumb = 0;
+    displayImg(imgNumb)
+
+
+    // ----------------------
+    function displayImg(imgNumb) {
+        hideImg()
+        picsArrayA2[imgNumb].style.display = "block";
+        picsArrayA1[imgNumb].style.outline = "10px solid black";
+    }
+
+    function nextImg() {
+        hideImg()
+        if (imgNumb >= picsArrayA2.length - 1) {
+            imgNumb = 0;
+            displayImg(imgNumb);
+        } else {
+            imgNumb++;
+            displayImg(imgNumb)
+        }
+    }
+
+    function prevImg() {
+        hideImg()
+        if (imgNumb <= 0) {
+            imgNumb = picsArrayA2.length - 1;
+            displayImg(imgNumb);
+        } else {
+            imgNumb--;
+            displayImg(imgNumb)
+        }
+    }
+
+    function hideImg() {
+        for (var item of picsArrayA2) {
+            item.style.display = "none";
+        }
+        for (var item of picsArrayA1) {
+            item.style.outline = "none";
+        }
+    }
+</script>
+
+<body>
+
+</body>
+
+</html>
