@@ -1,0 +1,65 @@
+body {
+    background-color: rgb(61, 61, 61);
+}
+#snake-field {
+    display: inline-block;
+}
+#snake-renew,
+#snake-start {
+    width: 150px;
+    padding: 15px;
+    color: white;
+    background-color: green;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    margin-right: 10px;
+}
+.game-table {
+    border-collapse: collapse;
+    background-color: #3e3e3e;
+}
+td.game-table-cell {
+    width: 15px;
+    height: 15px;
+    border: 1px dotted #eee;
+}
+.snake-unit {
+    background-color: white;
+}
+.food-unit {
+    background-color: rgb(36, 253, 16);
+    background-image: url("bite.svg");
+    background-repeat: no-repeat;
+    right: 5px;
+}
+
+.buttons {
+    display: inline-block;
+}
+.wrap {
+    margin: 30px auto 0;
+    text-align: center;
+}
+
+.mine-unit {
+    background-color: rgb(219, 39, 39);
+    background-image: url("bomb.svg");
+    background-repeat: no-repeat;
+    right: 5px;
+}
+
+.mine_alert-unit {
+    background-color: rgb(255, 251, 5);
+    background-image: url("exc.svg");
+    background-repeat: no-repeat;
+    right: 5px;
+}
+#score_block {
+    display: block;
+    height: 20px;
+    color: white;
+    background-color: rgba(251, 255, 5, 0.205);
+    margin-left: 10px;
+    width: 370px;
+}
